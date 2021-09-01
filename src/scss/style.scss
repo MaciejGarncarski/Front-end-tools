@@ -1,0 +1,205 @@
+@use 'resets';
+
+$white: #f7fff7;
+$black: #1b1b1e;
+
+$primary: #58a4b0;
+$secondary: #a9bcd0;
+$accent: #373f51;
+
+.app {
+  width: 100vw;
+  min-height: 100vh;
+  box-shadow: rgba($black, 0.18) 0px 1px 4px;
+  background-image: linear-gradient(to bottom right, rgba($white, 0.4), rgba($white, 0.25));
+
+  overflow: hidden;
+  display: flex;
+
+  z-index: 1;
+
+  @keyframes moveWaves {
+    from {
+      background-position-x: left;
+    }
+    to {
+      background-position-x: right;
+    }
+  }
+
+  &__header {
+    background: $primary;
+    padding: 6rem 3rem;
+    width: 40%;
+
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+      font-size: 9em;
+      font-weight: 400;
+      text-transform: uppercase;
+      color: $white;
+      font-family: 'Bungee Shade', cursive;
+      line-height: 1.35;
+      filter: drop-shadow(1px 1px 1px $black);
+    }
+    p {
+      font-size: 3em;
+      align-self: center;
+      color: $white;
+      filter: drop-shadow(1px 1px 0 $black);
+      font-weight: 700;
+      padding-top: 5rem;
+      padding-left: 1rem;
+      padding-right: 5rem;
+    }
+  }
+
+  &__description {
+    padding: 8rem;
+    gap: 5em;
+    width: 60%;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    background: $secondary;
+
+    .description__tool {
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      letter-spacing: 1px;
+      transition: all 222ms ease-in-out;
+      transition-property: transform, background-color;
+
+      figcaption {
+        position: absolute;
+        bottom: -5%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: auto;
+        height: 17%;
+        padding: 0 2rem;
+        background-color: $accent;
+        color: #f9e9ec;
+        font-size: 2em;
+        text-transform: uppercase;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+
+object {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  opacity: 0;
+}
+
+input {
+  position: fixed;
+  left: 33%;
+  top: 10%;
+
+  width: auto;
+  padding: 0 1em;
+  height: 2.25em;
+  opacity: 0;
+
+  background-color: $accent;
+  border: 0;
+  border-radius: 3px;
+  font-weight: 700;
+  color: $white;
+  text-shadow: 0px 0px 3px $black;
+  font-size: 2em;
+
+  transition: transform 222ms ease-in-out;
+  &:hover {
+    transform: scale(1.03);
+  }
+}
+
+.waves {
+  width: 80%;
+  height: 20%;
+  opacity: 0.95;
+  overflow: hidden;
+  background: url('../img/xd.svg');
+  background-size: cover;
+  animation: moveWaves 10s infinite alternate;
+
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  filter: drop-shadow(1px 1px 0px $black);
+}
+
+@media screen and (min-width: 1001px) {
+  .description__tool {
+    &:nth-child(odd) {
+      transform: translateY(-5%);
+      &:hover {
+        transform: translateY(-5%) scale(1.02);
+      }
+      figcaption {
+        left: -3%;
+      }
+    }
+
+    &:nth-child(even) {
+      transform: translateY(5%);
+
+      &:hover {
+        transform: translateY(5%) scale(1.02);
+      }
+
+      figcaption {
+        right: -3%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .app {
+    flex-direction: column;
+    &__header {
+      width: 100%;
+      height: 15%;
+      padding: 2rem;
+      h1 {
+        font-size: 5em;
+      }
+      p,
+      article {
+        display: none;
+      }
+    }
+    &__description {
+      grid-template-columns: 1fr;
+      width: 100%;
+      height: 85%;
+      padding-right: 5rem;
+      padding-left: 5rem;
+      .description__tool {
+        figcaption {
+          width: 100%;
+          position: static;
+        }
+      }
+    }
+  }
+}
