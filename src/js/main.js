@@ -6,10 +6,7 @@ const landing = document.querySelector('.app__header');
 const description = document.querySelector('.app__description');
 const tl = gsap.timeline({ paused: true });
 
-const units = 'vw';
-const dir = 'x';
-
-const animation = () => {
+const desktopAnimation = () => {
   tl.to(landing, {
     duration: 0.25,
     scale: 1.03,
@@ -21,7 +18,7 @@ const animation = () => {
     },
     '-=0.25',
   );
-  tl.to(landing, { dir: `150${units}` }).to(description, { x: `-150${units}` }, '-=0.85');
+  tl.to(landing, { y: '150vh' }).to(description, { y: '-150vh' }, '-=0.85');
   tl.to('input', { opacity: 1 }, '-=0.5');
   tl.to(
     'object',
@@ -32,7 +29,29 @@ const animation = () => {
     '-=0.75',
   );
 };
-
+const mobileAnimation = () => {
+  tl.to(landing, {
+    duration: 0.25,
+    scale: 1.03,
+  }).to(
+    description,
+    {
+      duration: 0.25,
+      scale: 1.03,
+    },
+    '-=0.25',
+  );
+  tl.to(landing, { x: '150vw' }).to(description, { x: '-150vw' }, '-=0.85');
+  tl.to('input', { opacity: 1 }, '-=0.5');
+  tl.to(
+    'object',
+    {
+      zIndex: 0,
+      opacity: 1,
+    },
+    '-=0.75',
+  );
+};
 const gsapAnimation = () => {
   gsap.defaults({
     ease: 'power2.inOut',
@@ -41,8 +60,8 @@ const gsapAnimation = () => {
   if (window.innerWidth <= 1000) {
     mobileAnimation();
   } else {
+    desktopAnimation();
   }
-  animation();
 };
 gsapAnimation();
 
