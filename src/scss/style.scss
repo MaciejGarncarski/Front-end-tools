@@ -121,6 +121,10 @@ $accent: #373f51;
       letter-spacing: 1px;
       transition: all 222ms ease-in-out;
 
+      figure {
+        margin: 0;
+      }
+
       figcaption {
         position: absolute;
         bottom: -5%;
