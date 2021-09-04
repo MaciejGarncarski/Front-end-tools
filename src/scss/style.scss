@@ -34,15 +34,62 @@ $accent: #373f51;
 
     display: flex;
     flex-direction: column;
-
     h1 {
-      font-size: 9em;
+      font-size: clamp(4em, 4.7vw, 9em);
       font-weight: 400;
       text-transform: uppercase;
       color: $white;
       font-family: 'Bungee Shade', cursive;
       line-height: 1.35;
       filter: drop-shadow(1px 1px 1px $black);
+      padding-right: 3vw;
+      position: relative;
+
+      @keyframes windBefore {
+        0% {
+          transform: rotate(200deg);
+        }
+        100% {
+          transform: rotate(220deg);
+        }
+      }
+
+      @keyframes windAfter {
+        0% {
+          transform: rotate(135deg);
+        }
+        100% {
+          transform: rotate(145deg);
+        }
+      }
+
+      &::before {
+        content: '';
+        width: 7vw;
+        height: 7vw;
+        background: url('../img/leaf2.svg') no-repeat;
+        background-size: contain;
+        position: absolute;
+        right: 14%;
+        top: -24%;
+        transform: rotate(210deg);
+        animation: windBefore 15s infinite linear alternate;
+        transform-origin: bottom;
+      }
+
+      &::after {
+        content: '';
+        width: 7vw;
+        height: 7vw;
+        background: url('../img/leaf2.svg') no-repeat;
+        background-size: contain;
+        position: absolute;
+        left: -10%;
+        top: 40%;
+        transform: rotate(140deg);
+        animation: windAfter 10s infinite linear alternate;
+        transform-origin: bottom;
+      }
     }
     p {
       font-size: 3em;
@@ -50,14 +97,14 @@ $accent: #373f51;
       color: $white;
       filter: drop-shadow(1px 1px 0 $black);
       font-weight: 700;
-      padding-top: 5rem;
-      padding-left: 1rem;
-      padding-right: 5rem;
+      padding-top: 13rem;
+      padding-left: 2rem;
+      padding-right: 6rem;
     }
   }
 
   &__description {
-    padding: 8rem;
+    padding: 6vh 4vw;
     gap: 5em;
     width: 60%;
     display: grid;
@@ -73,7 +120,6 @@ $accent: #373f51;
       flex-direction: column;
       letter-spacing: 1px;
       transition: all 222ms ease-in-out;
-      transition-property: transform, background-color;
 
       figcaption {
         position: absolute;
@@ -109,42 +155,26 @@ object {
 }
 
 input {
-  position: fixed;
-  left: 33%;
+  position: absolute;
+  left: 25%;
   top: 10%;
-
   width: auto;
   padding: 0 1em;
   height: 2.25em;
   opacity: 0;
-
   background-color: $accent;
-  border: 0;
+  border: 2px solid $white;
   border-radius: 3px;
   font-weight: 700;
   color: $white;
   text-shadow: 0px 0px 3px $black;
   font-size: 2em;
-
   transition: transform 222ms ease-in-out;
+
   &:hover {
-    transform: scale(1.03);
+    background: $white;
+    color: $black;
   }
-}
-
-.waves {
-  width: 80%;
-  height: 20%;
-  opacity: 0.95;
-  overflow: hidden;
-  background: url('../img/xd.svg');
-  background-size: cover;
-  animation: moveWaves 10s infinite alternate;
-
-  position: absolute;
-  top: 5%;
-  right: 5%;
-  filter: drop-shadow(1px 1px 0px $black);
 }
 
 @media screen and (min-width: 1001px) {
@@ -182,6 +212,19 @@ input {
       padding: 2rem;
       h1 {
         font-size: 5em;
+        &::before,
+        &::after {
+          width: 15vw;
+          height: 15vw;
+        }
+        &::before {
+          right: 0;
+          top: -60%;
+        }
+        &::after {
+          left: 45%;
+          top: 10%;
+        }
       }
       p,
       article {
