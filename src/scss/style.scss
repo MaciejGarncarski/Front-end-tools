@@ -136,6 +136,7 @@ $accent: #373f51;
         text-transform: uppercase;
       }
 
+      picture,
       img {
         width: 100%;
         height: 100%;
@@ -155,8 +156,8 @@ object {
 }
 
 input {
-  position: absolute;
-  left: 25%;
+  position: fixed;
+  left: 22%;
   top: 10%;
   width: auto;
   padding: 0 1em;
@@ -177,7 +178,7 @@ input {
   }
 }
 
-@media screen and (min-width: 1001px) {
+@media screen and (min-width: 900px) {
   .description__tool {
     &:nth-child(odd) {
       transform: translateY(-5%);
@@ -203,27 +204,20 @@ input {
   }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 800px) {
   .app {
     flex-direction: column;
     &__header {
       width: 100%;
-      height: 15%;
-      padding: 2rem;
+      height: auto;
+      padding: 1.2rem;
       h1 {
         font-size: 5em;
+        text-align: center;
+        filter: none;
         &::before,
         &::after {
-          width: 15vw;
-          height: 15vw;
-        }
-        &::before {
-          right: 0;
-          top: -60%;
-        }
-        &::after {
-          left: 45%;
-          top: 10%;
+          display: none;
         }
       }
       p,
