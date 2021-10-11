@@ -21,7 +21,7 @@ const desktopAnimation = () => {
   tl.to(landing, { y: '150vh' }).to(description, { y: '-150vh' }, '-=0.85');
   tl.to('input', { opacity: 1 }, '-=0.5');
   tl.to(
-    'object',
+    'iframe',
     {
       zIndex: 0,
       opacity: 1,
@@ -44,7 +44,7 @@ const mobileAnimation = () => {
   tl.to(landing, { x: '150vw' }).to(description, { x: '-150vw' }, '-=0.85');
   tl.to('input', { opacity: 1 }, '-=0.5');
   tl.to(
-    'object',
+    'iframe',
     {
       zIndex: 0,
       opacity: 1,
@@ -70,7 +70,7 @@ let currentX = null;
 section.forEach((el) => {
   el.addEventListener('click', () => {
     currentX = el.offsetTop;
-    document.querySelector('object').data = el.dataset.link;
+    document.querySelector('iframe').src = el.dataset.link;
     tl.play(!tl.play());
     setTimeout(() => {
       window.scrollTo(0, 0);
